@@ -59,7 +59,7 @@ dependencies:
 
   # work with dart functionallity
   equatable: ^2.0.2
-  dartz: ^0.9.2
+  dartz: ^0.10.0-nullsafety.2
 
   #to work with icons and fonts
   font_awesome_flutter: ^9.0.0
@@ -67,6 +67,9 @@ dependencies:
 
   # file picker
   image_picker: ^0.7.5+2
+
+  # flutter genration for assets
+  spider: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -82,8 +85,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/google_icon.png
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
