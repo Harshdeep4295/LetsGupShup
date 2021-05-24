@@ -3,9 +3,9 @@ abstract class LoginState {}
 class UserNotLoggedInState extends LoginState {}
 
 class UserLoggedInState extends LoginState {
-  final bool loggedIn;
+  final String message;
 
-  UserLoggedInState({required this.loggedIn});
+  UserLoggedInState({required this.message});
 }
 
 class LoadingState extends LoginState {}

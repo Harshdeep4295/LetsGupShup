@@ -23,14 +23,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         final user = await repository.signInWithGoogle();
         yield user.fold((bool value) {
           AppRouting.navigateTo(DASHBOARD_SCREEN);
-          return LoadingState();
+          return UserLoggedInState(message: 'Sign in successfully');
         }, (Failure fail) {
           return UserLoggedInFailed(fail.message);
         });
-        // if (value is bool && value) {
-
-        // } else
-        //   yield UserLoggedInFailed("Please Login to continue.");
       }
     } catch (_) {
       yield UserLoggedInFailed("Please Login to continue.");

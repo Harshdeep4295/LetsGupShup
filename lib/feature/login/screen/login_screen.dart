@@ -46,6 +46,10 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
                     widget.bloc.add(MakeUserLoginEvent());
                   },
                 );
+              } else if (state is UserLoggedInState) {
+                WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+                  Fluttertoast.showToast(msg: state.message);
+                });
               }
               return CircularProgressIndicator();
             },
