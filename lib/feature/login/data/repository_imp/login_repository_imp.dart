@@ -30,6 +30,7 @@ class LoginRepositoryImpl extends LoginRepository {
       UserModel? user = await dataSource.logIn();
       if (user != null) {
         addModelToPrefrence(user);
+        addUserToFirestore(user);
         return Left(true);
       }
     } on Exception catch (ex) {
@@ -38,5 +39,10 @@ class LoginRepositoryImpl extends LoginRepository {
       return Right(Error(error.message));
     }
     return Left(false);
+  }
+
+  @override
+  Future<void> addUserToFirestore(UserModel model) async {
+    await dataSource.addUserToFireStore(model);
   }
 }

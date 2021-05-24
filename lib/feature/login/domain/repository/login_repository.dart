@@ -6,4 +6,5 @@ abstract class LoginRepository {
   Future<Either<bool, Failure>> signInWithGoogle();
   void logOut();
   void addModelToPrefrence(UserModel model);
+  void addUserToFirestore(UserModel model);
 }

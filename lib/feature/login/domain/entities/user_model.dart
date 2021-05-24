@@ -9,7 +9,7 @@ class UserModel extends Equatable {
   final String password;
   final bool status;
   final int timestamp;
-
+  final String? photoUrl;
   UserModel({
     required this.id,
     required this.email,
@@ -18,6 +18,7 @@ class UserModel extends Equatable {
     required this.password,
     required this.status,
     required this.timestamp,
+    this.photoUrl,
   });
   @override
   List<Object?> get props => [id, email, name, deviceToken];
@@ -31,6 +32,29 @@ class UserModel extends Equatable {
       password: "--",
       status: user.emailVerified,
       timestamp: DateTime.now().millisecondsSinceEpoch,
+      photoUrl: user.photoURL,
     );
+  }
+
+  toJson() {
+    return {
+      "id": this.id,
+      "name": this.name,
+      "email": this.email,
+      "photoUrl": this.photoUrl,
+      "timestamp": this.timestamp,
+    };
+  }
+
+  static UserModel fromJson(Map<String, dynamic> json) {
+    return UserModel(
+        id: json["id"],
+        email: json["email"],
+        name: json["name"],
+        deviceToken: "deviceToken",
+        password: "password",
+        status: false,
+        timestamp: 231312,
+        photoUrl: json["photoUrl"]);
   }
 }

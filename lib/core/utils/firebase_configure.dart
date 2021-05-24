@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:flutter/material.dart';
 
@@ -29,5 +30,24 @@ class FireBaseConfig {
     }
 
     return null;
+  }
+
+  Future<List<DocumentSnapshot>> getQueryDocs(
+    String query,
+  ) async {
+    List<DocumentSnapshot> docs = [];
+    QuerySnapshot<Map<String, dynamic>> queries =
+        await FirebaseFirestore.instanceFor(app: firebaseApp!)
+            .collection(query)
+            .limit(20)
+            .get();
+
+    for (QueryDocumentSnapshot<Map<String, dynamic>> querySnapshot
+        in queries.docs) {
+      docs.add(querySnapshot);
+      // break;
+    }
+
+    return docs;
   }
 }
