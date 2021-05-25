@@ -12,6 +12,7 @@ import 'package:letsgupshup/core/widgets/my_custom_text_widget.dart';
 import 'package:letsgupshup/feature/dashboard/bloc/dashboard_bloc.dart';
 import 'package:letsgupshup/feature/dashboard/bloc/dashboard_bloc_events.dart';
 import 'package:letsgupshup/feature/dashboard/bloc/dashboard_bloc_state.dart';
+import 'package:letsgupshup/feature/chat/screen/chat.dart';
 import 'package:letsgupshup/feature/login/domain/entities/user_model.dart';
 
 class Dashboard extends StatefulWidget {
@@ -78,7 +79,11 @@ class _DashboardState extends State<Dashboard> {
           ],
         ),
         onPressed: () {
-          widget.bloc.add(LoadUser());
+          AppRouting.navigateWithArgumentTo(CHAT_SCREEN, {
+            "peerId": model.id,
+            "peerAvatar": model.photoUrl,
+            "peerName": model.name,
+          });
         },
         color: Colors.grey.shade200,
         padding: EdgeInsets.fromLTRB(25.0, 10.0, 25.0, 10.0),

@@ -34,9 +34,9 @@ class LoginRepositoryImpl extends LoginRepository {
         return Left(true);
       }
     } on Exception catch (ex) {
-      return Right(Error(ex.toString()));
+      return Right(Errors(ex.toString()));
     } on Error catch (error) {
-      return Right(Error(error.message));
+      return Right(Errors(error.stackTrace.toString()));
     }
     return Left(false);
   }
