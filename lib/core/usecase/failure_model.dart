@@ -13,6 +13,6 @@ class ServerFailure extends Failure {
   ServerFailure(String message) : super(message: message);
 }
 
-class Error extends Failure {
-  Error(String message) : super(message: message);
+class Errors extends Failure {
+  Errors(String message) : super(message: message);
 }

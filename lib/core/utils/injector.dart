@@ -10,7 +10,7 @@ import 'package:letsgupshup/feature/login/data/repository_imp/login_repository_i
 final GoogleSignIn googleSignIn = GoogleSignIn();
 Future<void> init() async {
   AppPreferences prefernce = AppPreferences();
-  Get.lazyPut(() => prefernce);
+  Get.lazyPut(() => prefernce, fenix: true);
   setLoginBloc();
   await FireBaseConfig().initFirebase();
 }
@@ -23,7 +23,7 @@ void setLoginBloc() {
   LoginBloc loginBloc = LoginBloc(
     repository: LoginRepositoryImpl(dataSource: LoginDataSourceImp()),
   );
-  Get.lazyPut(() => loginBloc);
+  Get.lazyPut(() => loginBloc, fenix: true);
 }
 
 LoginBloc getLoginBloc() {
