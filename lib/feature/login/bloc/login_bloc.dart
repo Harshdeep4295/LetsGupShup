@@ -51,6 +51,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         }, (Failure fail) {
           return UserLoggedInFailed(fail.message);
         });
+      } else if (event is NotLoaded) {
+        yield UserNotLoggedInState();
       }
     } on Exception catch (ex) {
       yield UserLoggedInFailed("Please Login to continue.");

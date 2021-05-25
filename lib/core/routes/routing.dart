@@ -11,6 +11,9 @@ import 'package:letsgupshup/feature/dashboard/bloc/dashboard_bloc.dart';
 import 'package:letsgupshup/feature/dashboard/data/datasource/dashboard_data_source_imp.dart';
 import 'package:letsgupshup/feature/dashboard/data/repository/dashboard_repo_impl.dart';
 import 'package:letsgupshup/feature/dashboard/screen/dashboard.dart';
+import 'package:letsgupshup/feature/login/bloc/login_bloc.dart';
+import 'package:letsgupshup/feature/login/data/data_source/login_repo_imp.dart';
+import 'package:letsgupshup/feature/login/data/repository_imp/login_repository_imp.dart';
 import 'package:letsgupshup/feature/login/screen/login_screen.dart';
 import 'package:letsgupshup/feature/splash_screen/splash_screen.dart';
 
@@ -38,11 +41,16 @@ class RoutesGeneration {
 
     switch (navigateToRouteName) {
       case LOGIN_SCREEN:
+        LoginBloc _loginBloc = LoginBloc(
+          repository: LoginRepositoryImpl(
+            dataSource: LoginDataSourceImp(),
+          ),
+        );
         route = GetPageRoute(
           page: () => BlocProvider(
-            create: (context) => getLoginBloc(),
+            create: (context) => _loginBloc,
             child: LoginScreen(
-              bloc: getLoginBloc(),
+              bloc: _loginBloc,
             ),
           ),
         );

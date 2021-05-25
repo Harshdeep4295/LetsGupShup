@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:letsgupshup/core/styles/app_dimens.dart';
 import 'package:letsgupshup/core/widgets/google_sign_in_button.dart';
 import 'package:letsgupshup/core/widgets/my_custom_text_widget.dart';
 import 'package:letsgupshup/feature/login/bloc/login_bloc.dart';
@@ -125,29 +127,61 @@ class _LoginScreenState extends State<LoginScreen> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: MediumTextView('Log in '),
-      ),
-      body: Container(
-        child: Center(
-          child: BlocBuilder(
-            bloc: widget.bloc,
-            builder: (context, state) {
-              if (state is UserNotLoggedInState) {
-                return loginView();
-              } else if (state is UserLoggedInFailed) {
-                WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-                  Fluttertoast.showToast(msg: state.message);
-                });
-                return loginView();
-              } else if (state is UserLoggedInState) {
-                WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-                  Fluttertoast.showToast(msg: state.message);
-                });
-              }
-              return CircularProgressIndicator();
-            },
-          ),
+        title: LargeTextView(
+          'Log in',
+          fontWeight: FontWeight.bold,
         ),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Hero(
+            tag: "spashIcon",
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Icon(
+                  FontAwesomeIcons.chartPie,
+                  size: height(100),
+                ),
+                SizedBox(
+                  height: height(20),
+                ),
+                LargeTextView(
+                  "Lets Gup Sup",
+                  textColor: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  align: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          Container(
+            child: Center(
+              child: BlocBuilder(
+                bloc: widget.bloc,
+                builder: (context, state) {
+                  if (state is UserNotLoggedInState) {
+                    return loginView();
+                  } else if (state is UserLoggedInFailed) {
+                    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+                      Fluttertoast.showToast(msg: state.message);
+                    });
+                    return loginView();
+                  } else if (state is UserLoggedInState) {
+                    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+                      Fluttertoast.showToast(msg: state.message);
+                    });
+                    return loginView();
+                  }
+                  return CircularProgressIndicator();
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

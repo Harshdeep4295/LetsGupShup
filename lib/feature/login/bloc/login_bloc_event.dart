@@ -2,6 +2,8 @@ abstract class LoginEvent {}
 
 class MakeUserLoginEvent extends LoginEvent {}
 
+class NotLoaded extends LoginEvent {}
+
 class UserLogInSuccess extends LoginEvent {
   final bool loggedIn;
   UserLogInSuccess({required this.loggedIn});

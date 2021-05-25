@@ -95,16 +95,17 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: MediumTextView('CHATS'),
+        title: MediumTextView('CHATS', fontWeight: FontWeight.bold),
         actions: [
           InkWell(
             onTap: () {
               googleSignIn.signOut();
               AppPreferences().clearAll();
-              AppRouting.navigateTo(LOGIN_SCREEN);
+              AppRouting.navigateTo("/");
             },
             child: Icon(
               FontAwesomeIcons.signOutAlt,
+              color: Colors.black,
             ),
           )
         ],
@@ -123,16 +124,7 @@ class _DashboardState extends State<Dashboard> {
           } else {
             return Container(
               child: Center(
-                child: Column(
-                  children: [
-                    CircularProgressIndicator(),
-                    MaterialButton(
-                      onPressed: () {
-                        widget.bloc.add(LoadUser());
-                      },
-                    )
-                  ],
-                ),
+                child: CircularProgressIndicator(),
               ),
             );
           }

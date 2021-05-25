@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:letsgupshup/core/routes/routing.dart';
 import 'package:letsgupshup/core/widgets/my_custom_text_widget.dart';
 import 'package:letsgupshup/feature/chat/bloc/chat_bloc.dart';
 import 'package:letsgupshup/feature/chat/bloc/chat_bloc_event.dart';
@@ -103,6 +104,7 @@ class _ChatOneOnOneState extends State<ChatOneOnOne> {
               child: IconButton(
                 icon: Icon(Icons.image),
                 onPressed: getImage,
+                color: Colors.black,
               ),
             ),
             color: Colors.white,
@@ -114,7 +116,7 @@ class _ChatOneOnOneState extends State<ChatOneOnOne> {
                 onSubmitted: (value) {
                   onSendMessage(textEditingController.text, 0);
                 },
-                // style: TextStyle(color: primaryColor, fontSize: 15.0),
+                style: TextStyle(color: Colors.black, fontSize: 15.0),
                 controller: textEditingController,
                 decoration: InputDecoration.collapsed(
                   hintText: 'Type your message...',
@@ -130,7 +132,10 @@ class _ChatOneOnOneState extends State<ChatOneOnOne> {
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 8.0),
               child: IconButton(
-                icon: Icon(Icons.send),
+                icon: Icon(
+                  Icons.send,
+                  color: Colors.black,
+                ),
                 onPressed: () => onSendMessage(textEditingController.text, 0),
               ),
             ),
@@ -361,8 +366,18 @@ class _ChatOneOnOneState extends State<ChatOneOnOne> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: LargeTextView("${widget.peerName}"),
-      ),
+          title: LargeTextView(
+            "${widget.peerName}",
+            fontWeight: FontWeight.bold,
+          ),
+          actionsIconTheme: IconThemeData(color: Colors.black),
+          leading: IconButton(
+            onPressed: () => AppRouting.getBack(),
+            icon: Icon(
+              FontAwesomeIcons.arrowLeft,
+              color: Colors.black,
+            ),
+          )),
       body: BlocBuilder(
         bloc: widget.bloc,
         builder: (context, ChatState state) {
@@ -391,7 +406,7 @@ class _ChatOneOnOneState extends State<ChatOneOnOne> {
                   buildInput(),
                 ],
               ),
-              buildLoading(state is LoadingChat),
+              Center(child: buildLoading(state is LoadingChat)),
             ],
           );
         },

@@ -18,6 +18,9 @@ class AppContext extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialRoute: "/",
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Colors.amber.shade700,
+      ),
       onGenerateRoute: (settings) => RoutesGeneration.generateRoutes(settings),
     );
   }

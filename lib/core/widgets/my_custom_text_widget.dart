@@ -8,6 +8,7 @@ class TextView extends Text {
     double fontSize,
     FontWeight fontWeight,
     Color textColor,
+    TextAlign? align,
   ) : super(
           displayString,
           style: TextStyle(
@@ -16,6 +17,7 @@ class TextView extends Text {
             fontWeight: fontWeight,
             fontFamily: GoogleFonts.roboto().fontFamily,
           ),
+          textAlign: align ?? TextAlign.start,
         );
 }
 
@@ -25,12 +27,7 @@ class SmallTextView extends TextView {
     double fontSize = 14,
     FontWeight fontWeight = FontWeight.w500,
     Color textColor = Colors.black,
-  }) : super(
-          displayString,
-          fontSize,
-          fontWeight,
-          textColor,
-        );
+  }) : super(displayString, fontSize, fontWeight, textColor, null);
 }
 
 class MediumTextView extends TextView {
@@ -39,12 +36,7 @@ class MediumTextView extends TextView {
     double fontSize = 16,
     FontWeight fontWeight = FontWeight.w500,
     Color textColor = Colors.black,
-  }) : super(
-          displayString,
-          fontSize,
-          fontWeight,
-          textColor,
-        );
+  }) : super(displayString, fontSize, fontWeight, textColor, null);
 }
 
 class LargeTextView extends TextView {
@@ -53,10 +45,6 @@ class LargeTextView extends TextView {
     double fontSize = 22,
     FontWeight fontWeight = FontWeight.w500,
     Color textColor = Colors.black,
-  }) : super(
-          displayString,
-          fontSize,
-          fontWeight,
-          textColor,
-        );
+    TextAlign align = TextAlign.start,
+  }) : super(displayString, fontSize, fontWeight, textColor, align);
 }
