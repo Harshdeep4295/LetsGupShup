@@ -45,17 +45,21 @@ class LoginDataSourceImp extends LoginDataSource {
 
   @override
   Future<void> addUserToFireStore(UserModel model) async {
-    final userReference =
-        FirebaseFirestore.instanceFor(app: FireBaseConfig.firebaseApp!)
-            .collection('users');
+    DocumentSnapshot<Map<String, dynamic>> userReference =
+        await FirebaseFirestore.instanceFor(app: FireBaseConfig.firebaseApp!)
+            .collection('users')
+            .doc(model.id)
+            .get();
     // user.add(model.toJson());
 
-    FirebaseFirestore.instanceFor(app: FireBaseConfig.firebaseApp!)
-        .runTransaction((transaction) async {
-      transaction.set(
-        userReference.doc(),
-        model.toJson(),
-      );
-    });
+    if (!userReference.exists) {
+      FirebaseFirestore.instanceFor(app: FireBaseConfig.firebaseApp!)
+          .runTransaction((transaction) async {
+        transaction.set(
+          userReference.reference,
+          model.toJson(),
+        );
+      });
+    }
   }
 }

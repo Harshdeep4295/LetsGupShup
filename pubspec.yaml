@@ -71,6 +71,9 @@ dependencies:
   # flutter genration for assets
   spider: ^2.0.0
 
+  #date formating
+  intl: ^0.17.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

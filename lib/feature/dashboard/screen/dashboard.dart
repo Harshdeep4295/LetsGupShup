@@ -1,22 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgupshup/core/routes/route_names.dart';
 import 'package:letsgupshup/core/routes/routing.dart';
-import 'package:letsgupshup/core/utils/firebase_configure.dart';
 import 'package:letsgupshup/core/utils/injector.dart';
 import 'package:letsgupshup/core/utils/shared_pref.dart';
 import 'package:letsgupshup/core/widgets/my_custom_text_widget.dart';
 import 'package:letsgupshup/feature/dashboard/bloc/dashboard_bloc.dart';
 import 'package:letsgupshup/feature/dashboard/bloc/dashboard_bloc_events.dart';
 import 'package:letsgupshup/feature/dashboard/bloc/dashboard_bloc_state.dart';
-import 'package:letsgupshup/feature/chat/screen/chat.dart';
 import 'package:letsgupshup/feature/login/domain/entities/user_model.dart';
 
 class Dashboard extends StatefulWidget {
-  DashboardBloc bloc;
+  final DashboardBloc bloc;
   Dashboard({required this.bloc});
   @override
   _DashboardState createState() => _DashboardState();
