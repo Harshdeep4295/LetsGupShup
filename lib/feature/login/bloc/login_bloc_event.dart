@@ -11,3 +11,15 @@ class UserLogInError extends LoginEvent {
   final String error;
   UserLogInError(this.error);
 }
+
+class SignInWithEmail extends LoginEvent {
+  final String email;
+  final String password;
+  SignInWithEmail({required this.email, required this.password});
+}
+
+class CreateUserWithEmail extends LoginEvent {
+  final String email;
+  final String password;
+  CreateUserWithEmail({required this.email, required this.password});
+}

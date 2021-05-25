@@ -45,4 +45,40 @@ class LoginRepositoryImpl extends LoginRepository {
   Future<void> addUserToFirestore(UserModel model) async {
     await dataSource.addUserToFireStore(model);
   }
+
+  @override
+  Future<Either<bool, Failure>> signInWithEmail(
+      String email, String password) async {
+    try {
+      UserModel? user = await dataSource.logInUsingEmail(email, password);
+      if (user != null) {
+        addModelToPrefrence(user);
+        addUserToFirestore(user);
+        return Left(true);
+      }
+    } on Exception catch (ex) {
+      return Right(Errors(ex.toString()));
+    } on Error catch (error) {
+      return Right(Errors(error.stackTrace.toString()));
+    }
+    return Left(false);
+  }
+
+  @override
+  Future<Either<bool, Failure>> createUserWithEmail(
+      String email, String password) async {
+    try {
+      UserModel? user = await dataSource.signupUsingEmail(email, password);
+      if (user != null) {
+        addModelToPrefrence(user);
+        addUserToFirestore(user);
+        return Left(true);
+      }
+    } on Exception catch (ex) {
+      return Right(Errors(ex.toString()));
+    } on Error catch (error) {
+      return Right(Errors(error.stackTrace.toString()));
+    }
+    return Left(false);
+  }
 }

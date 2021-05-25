@@ -27,8 +27,34 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         }, (Failure fail) {
           return UserLoggedInFailed(fail.message);
         });
+      } else if (event is SignInWithEmail) {
+        yield LoadingState();
+
+        final user =
+            await repository.signInWithEmail(event.email, event.password);
+        yield user.fold((bool value) {
+          AppRouting.navigateTo(DASHBOARD_SCREEN);
+          return UserLoggedInState(message: 'Sign in successfully');
+        }, (Failure fail) {
+          return UserLoggedInFailed(fail.message.contains("user-not-found")
+              ? "Please Register First."
+              : "Wrong password try again!");
+        });
+      } else if (event is CreateUserWithEmail) {
+        yield LoadingState();
+
+        final user =
+            await repository.createUserWithEmail(event.email, event.password);
+        yield user.fold((bool value) {
+          AppRouting.navigateTo(DASHBOARD_SCREEN);
+          return UserLoggedInState(message: 'Sign in successfully');
+        }, (Failure fail) {
+          return UserLoggedInFailed(fail.message);
+        });
       }
-    } catch (_) {
+    } on Exception catch (ex) {
+      yield UserLoggedInFailed("Please Login to continue.");
+    } on Error catch (error) {
       yield UserLoggedInFailed("Please Login to continue.");
     }
   }

@@ -29,7 +29,7 @@ class _DashboardState extends State<Dashboard> {
 
   Widget buildItem(UserModel model) {
     return Container(
-      child: FlatButton(
+      child: MaterialButton(
         child: Row(
           children: <Widget>[
             Material(

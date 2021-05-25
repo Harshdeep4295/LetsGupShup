@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+// ignore: unused_import
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import 'package:letsgupshup/feature/chat/bloc/chat_bloc_state.dart';
 import 'package:letsgupshup/feature/chat/domain/model/message.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:letsgupshup/core/utils/firebase_configure.dart';
+import 'package:letsgupshup/resources/resources.dart';
 
 class ChatOneOnOne extends StatefulWidget {
   final String peerId;
@@ -197,49 +199,39 @@ class _ChatOneOnOneState extends State<ChatOneOnOne> {
               : int.parse(message.messageType!) == 1
                   // Image
                   ? Container(
-                      child: FlatButton(
-                        child: Material(
-                          child: CachedNetworkImage(
-                            placeholder: (context, url) => Container(
-                              child: CircularProgressIndicator(),
-                              width: 200.0,
-                              height: 200.0,
-                              padding: EdgeInsets.all(70.0),
-                              decoration: BoxDecoration(
-                                color: Colors.green.shade100,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8.0),
-                                ),
-                              ),
-                            ),
-                            errorWidget: (context, url, error) => Material(
-                              child: Image.asset(
-                                'images/img_not_available.jpeg',
-                                width: 200.0,
-                                height: 200.0,
-                                fit: BoxFit.cover,
-                              ),
+                      child: Material(
+                        child: CachedNetworkImage(
+                          placeholder: (context, url) => Container(
+                            child: CircularProgressIndicator(),
+                            width: 200.0,
+                            height: 200.0,
+                            padding: EdgeInsets.all(70.0),
+                            decoration: BoxDecoration(
+                              color: Colors.green.shade100,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8.0),
                               ),
-                              clipBehavior: Clip.hardEdge,
                             ),
-                            imageUrl: message.message,
-                            width: 200.0,
-                            height: 200.0,
-                            fit: BoxFit.cover,
                           ),
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          clipBehavior: Clip.hardEdge,
+                          errorWidget: (context, url, error) => Material(
+                            child: Image.asset(
+                              Images.error,
+                              width: 200.0,
+                              height: 200.0,
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8.0),
+                            ),
+                            clipBehavior: Clip.hardEdge,
+                          ),
+                          imageUrl: message.message,
+                          width: 200.0,
+                          height: 200.0,
+                          fit: BoxFit.cover,
                         ),
-                        onPressed: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => FullPhoto(
-                          //             url: document.data()['content'])));
-                        },
-                        padding: EdgeInsets.all(0),
+                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                        clipBehavior: Clip.hardEdge,
                       ),
                       margin: EdgeInsets.only(
                           bottom:
@@ -293,53 +285,42 @@ class _ChatOneOnOneState extends State<ChatOneOnOne> {
                             borderRadius: BorderRadius.circular(8.0)),
                         margin: EdgeInsets.only(left: 10.0),
                       )
-                    : int.parse(message.messageType!) == 0
+                    : int.parse(message.messageType!) == 1
                         ? Container(
-                            child: FlatButton(
-                              child: Material(
-                                child: CachedNetworkImage(
-                                  placeholder: (context, url) => Container(
-                                    child: CircularProgressIndicator(),
-                                    width: 200.0,
-                                    height: 200.0,
-                                    padding: EdgeInsets.all(70.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.amber.shade300,
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(8.0),
-                                      ),
-                                    ),
-                                  ),
-                                  errorWidget: (context, url, error) =>
-                                      Material(
-                                    child: Image.asset(
-                                      'images/img_not_available.jpeg',
-                                      width: 200.0,
-                                      height: 200.0,
-                                      fit: BoxFit.cover,
-                                    ),
+                            child: Material(
+                              child: CachedNetworkImage(
+                                placeholder: (context, url) => Container(
+                                  child: CircularProgressIndicator(),
+                                  width: 200.0,
+                                  height: 200.0,
+                                  padding: EdgeInsets.all(70.0),
+                                  decoration: BoxDecoration(
+                                    color: Colors.amber.shade300,
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(8.0),
                                     ),
-                                    clipBehavior: Clip.hardEdge,
                                   ),
-                                  imageUrl: message.message,
-                                  width: 200.0,
-                                  height: 200.0,
-                                  fit: BoxFit.cover,
                                 ),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0)),
-                                clipBehavior: Clip.hardEdge,
+                                errorWidget: (context, url, error) => Material(
+                                  child: Image.asset(
+                                    Images.error,
+                                    width: 200.0,
+                                    height: 200.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(8.0),
+                                  ),
+                                  clipBehavior: Clip.hardEdge,
+                                ),
+                                imageUrl: message.message,
+                                width: 200.0,
+                                height: 200.0,
+                                fit: BoxFit.cover,
                               ),
-                              onPressed: () {
-                                // Navigator.push(
-                                // context,
-                                // MaterialPageRoute(
-                                //     builder: (context) => FullPhoto(
-                                //         url: document.data()['content'])));
-                              },
-                              padding: EdgeInsets.all(0),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0)),
+                              clipBehavior: Clip.hardEdge,
                             ),
                             margin: EdgeInsets.only(left: 10.0),
                           )

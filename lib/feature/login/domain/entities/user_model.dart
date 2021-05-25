@@ -50,7 +50,11 @@ class UserModel extends Equatable {
     return UserModel(
         id: json["id"],
         email: json["email"],
-        name: json["name"],
+        name: json["name"].toString() == "-"
+            ? json["email"]
+                .toString()
+                .substring(0, json["email"].toString().indexOf("@"))
+            : json["name"],
         deviceToken: "deviceToken",
         password: "password",
         status: false,

@@ -7,8 +7,10 @@ import 'package:letsgupshup/feature/login/domain/entities/user_model.dart';
 
 abstract class LoginDataSource {
   Future<UserModel?> logIn();
+  Future<UserModel?> logInUsingEmail(String email, String password);
   Future<void> logOut();
   Future<void> addUserToFireStore(UserModel model);
+  Future<UserModel?> signupUsingEmail(String email, password);
 }
 
 class LoginDataSourceImp extends LoginDataSource {
@@ -61,5 +63,42 @@ class LoginDataSourceImp extends LoginDataSource {
         );
       });
     }
+  }
+
+  @override
+  Future<UserModel?> logInUsingEmail(String email, String password) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    final UserCredential userCredential =
+        await auth.signInWithEmailAndPassword(email: email, password: password);
+
+    user = userCredential.user;
+
+    if (user != null) {
+      UserModel model = UserModel.copyWith(user);
+
+      return model;
+    }
+    return null;
+  }
+
+  @override
+  Future<UserModel?> signupUsingEmail(String email, password) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    final UserCredential userCredential =
+        await auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+    user = userCredential.user;
+
+    if (user != null) {
+      UserModel model = UserModel.copyWith(user);
+
+      return model;
+    }
+    return null;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:letsgupshup/feature/login/domain/entities/user_model.dart';
 
+// ignore: must_be_immutable
 class DisplayUsers extends UserModel {
   String firebaseId;
   final String id;

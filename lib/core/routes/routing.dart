@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
 import 'package:letsgupshup/core/routes/route_names.dart';
 import 'package:letsgupshup/core/utils/injector.dart';
-import 'package:letsgupshup/core/widgets/my_custom_text_widget.dart';
 import 'package:letsgupshup/feature/chat/bloc/chat_bloc.dart';
 import 'package:letsgupshup/feature/chat/data/datasource/use_case_impl.dart';
 import 'package:letsgupshup/feature/chat/data/repoistory_imp/chat_repoistory_impl.dart';
@@ -12,9 +11,6 @@ import 'package:letsgupshup/feature/dashboard/bloc/dashboard_bloc.dart';
 import 'package:letsgupshup/feature/dashboard/data/datasource/dashboard_data_source_imp.dart';
 import 'package:letsgupshup/feature/dashboard/data/repository/dashboard_repo_impl.dart';
 import 'package:letsgupshup/feature/dashboard/screen/dashboard.dart';
-import 'package:letsgupshup/feature/login/bloc/login_bloc.dart';
-import 'package:letsgupshup/feature/login/data/data_source/login_repo_imp.dart';
-import 'package:letsgupshup/feature/login/data/repository_imp/login_repository_imp.dart';
 import 'package:letsgupshup/feature/login/screen/login_screen.dart';
 import 'package:letsgupshup/feature/splash_screen/splash_screen.dart';
 

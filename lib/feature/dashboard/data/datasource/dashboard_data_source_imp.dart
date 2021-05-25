@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:letsgupshup/core/utils/firebase_configure.dart';
 import 'package:letsgupshup/feature/dashboard/data/model/user_model_firebase.dart';
 import 'package:letsgupshup/feature/dashboard/domain/usecase/usecase.dart';
-import 'package:letsgupshup/feature/login/domain/entities/user_model.dart';
 
 class DashboardDataSourceImp extends DashboardDataSource {
   @override
